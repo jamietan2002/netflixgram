@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <h1>Netflixgram</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p id = "hi">
+      {% if user.is_authenticated %}
+        Welcome to your Homepage, {{ user.username }}! 
+      {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+      {% endif %}
+
+      </p>
+    </div>
+  </div>
+  <div class="row">
+  
+  <div class="list-group">
+    <a href="{% url 'my_watchlist' %}" class="list-group-item list-group-item-action"> My Watchlist</a>
+    <a href="{% url 'my_network' %}" class="list-group-item list-group-item-action">My Network</a>
+    <a href="{% url 'data' %}" class="list-group-item list-group-item-action">All Movies</a>
+    <a href="{% url 'profile_list' %}" class="list-group-item list-group-item-action">All Profiles</a>
+    <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">Log Out</a>
+  </div>
+  </div>
+{% endblock %}

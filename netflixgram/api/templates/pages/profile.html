@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <h1> {{profile.user.username|upper}}'S Watchlist</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="buttons has-addons">
+                        {% if profile in user.profile.follows.all %}
+                            <button class="btn btn-outline-primary" disabled>Follow</button>
+                            <button class="btn btn-outline-secondary" name="follow" value="unfollow">Unfollow</button>
+                        {% else %}
+                            <button class="btn btn-outline-primary" name="follow" value="follow">Follow</button>
+                            <button class="btn btn-outline-secondary" disabled>Unfollow</button>
+                        {% endif %}
+                        </div>
+                    </form>
+            </div>
+
+            <div class="row">
+                <class = "col-6">
+                  {% for review in profile.user.reviews.all %}
+                  <div class="card"> 
+                    <div class="card-body">
+                      <h5 class="card-title">{{ review.movie }}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{ review.my_rating }} / 10 </h6>
+                      <p class="card-text">{{ review.my_review }} </p>
+                      <footer class="blockquote-footer"> ({{ review.created_at }} by {{ review.user.username }}) </footer>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+                
+        </div>
+        <div class="col-3">
+            <div class="row">
+                <h3 class="title is-4">
+                    {{profile.user.username}} follows:
+                </h3>
+                <div class="content">
+                    <ul>
+                    {% for following in profile.follows.all %}
+                        <li>
+                            <a href="{% url 'profile' following.id %}">
+                                {{ following }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid">
+                <h3 class="title is-4">
+                    {{profile.user.username}} is followed by:
+                </h3>
+                <div class="content">
+                    <ul>
+                    {% for follower in profile.followed_by.all %}
+                        <li>
+                            <a href="{% url 'profile' follower.id %}">
+                                {{ follower }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

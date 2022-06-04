@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+    
+          <h1>Netflixgram</h1>
+            <h2>My Network</h2>
+      
+          <div class="row">
+            <class = "col-6">
+                {% for following in user.follows.all %}
+                    {% for review in following.user.reviews.all %}
+                        <div class="card"> 
+                            <div class="card-body">
+                                <h5 class="card-title">{{ review.movie }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ review.my_rating }} / 10 </h6>
+                                <p class="card-text">{{ review.my_review }} </p>
+                                <footer class="blockquote-footer"> ({{ review.created_at }} by {{ review.user.username }}) </footer>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>  
+        </div>
+
+        <div class="col-3", id="review-col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Your Following:</h5>
+                    <p class="card-text">
+                        <ul>
+                        {% for following in user.follows.all %}
+                            <li>
+                                <a href="{% url 'profile' following.id %}">
+                                    {{ following }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+            </div>
+     
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Your Followers:</h5>
+                    <p class="card-text">
+                        <ul>
+                        {% for follower in user.followed_by.all %}
+                            <li>
+                                <a href="{% url 'profile' follower.id %}">
+                                    {{ follower }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+{% endblock %}

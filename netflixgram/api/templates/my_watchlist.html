@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+
+      <h1>Netflixgram</h1>
+        <h2>My Watchlist</h2>
+  
+      <div class="row">
+        <class = "col-6">
+          {% for review in user.reviews.all %}
+          <div class="card"> 
+            <div class="card-body">
+              <h5 class="card-title">{{ review.movie }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ review.my_rating }} / 10 </h6>
+              <p class="card-text">{{ review.my_review }} </p>
+              <footer class="blockquote-footer"> ({{ review.created_at }} by {{ review.user.username }}) </footer>
+            </div>
+          </div>
+          {% endfor %}
+        </div>  
+    </div>
+      <div class="col-3", id="review-col">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-outline-primary">Leave review! </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
