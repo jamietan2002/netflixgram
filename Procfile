@@ -1,1 +1,1 @@
-web: gunicorn netflixgram.wsgi --log-file -
+web: gunicorn netflixgram.wsgi
