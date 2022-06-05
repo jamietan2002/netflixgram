@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p8=riy*y-5vy^86@vk1_(x+ist+61qq9@_wm!qh%mzzdjeq_&*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://netflixgram.herokuapp.com']
+ALLOWED_HOSTS = ['https://netflixgram.herokuapp.com','127.0.0.1']
 
 
 # Application definition
