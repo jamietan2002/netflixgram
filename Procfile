@@ -1,1 +1,1 @@
-web: gunicorn netflixgram.wsgi
+web: gunicorn netflixgram.netflixgram.wsgi
