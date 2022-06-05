@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, profile_list, profile, my_watchlist, data, my_network
+from .views import index, profile_list, profile, my_watchlist, data, my_network, login_page
 from . import views
 
 urlpatterns = [

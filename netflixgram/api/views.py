@@ -52,3 +52,6 @@ def profile(request, pk):
         current_user_profile.save()
     
     return render(request, "pages/profile.html", {"profile": profile})
+
+def login_page(request):
+    return render(request, "registration/login.html")

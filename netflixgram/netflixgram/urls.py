@@ -25,5 +25,5 @@ urlpatterns = [
 #Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
 urlpatterns += [
-   path('', RedirectView.as_view(url='api/', permanent=True)),
+   path('', RedirectView.as_view(url='api', permanent=True)),
 ]
